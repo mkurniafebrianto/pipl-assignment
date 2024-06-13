@@ -56,6 +56,11 @@ public class TestAttendance {
 
         @Test
         public void testCheckAttendanceInAndOut() {
-                assertEquals(expectedResult, Attendance.checkAttendanceInAndOut(time, isCheckIn, isButtonEnabled));
+                assertEquals(expectedResult, Attendance.checkAttendanceInAndOut(time, isCheckIn));
+        }
+
+        @Test
+        public void checkAttendanceIsButtonEnabled() {
+                assertEquals(isButtonEnabled, Attendance.checkAttendanceIsButtonEnabled(time, isCheckIn));
         }
 }
