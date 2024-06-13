@@ -61,6 +61,6 @@ public class TestAttendance {
 
         @Test
         public void checkAttendanceIsButtonEnabled() {
-                assertEquals(isButtonEnabled, Attendance.checkAttendanceIsButtonEnabled(time, isCheckIn));
+                assertEquals(isButtonEnabled, Attendance.checkAttendanceIsButtonEnabled(time));
         }
 }

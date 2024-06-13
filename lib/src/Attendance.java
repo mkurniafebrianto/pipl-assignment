@@ -13,7 +13,7 @@ public class Attendance {
     final LocalTime endCheckOut = LocalTime.of(17, 0, 0); // 17:00:00
 
     // define initial state for button
-    boolean isButtonEnabled = false;
+    boolean isButtonEnabled = checkAttendanceIsButtonEnabled(time);
 
     // if checkin
     if (isCheckIn) {
@@ -24,21 +24,17 @@ public class Attendance {
 
         // enable button
         isButtonEnabled = true;
-
-        // check attendance and return str
-        if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
-            && (time.isBefore(endCheckIn) || time.equals(endCheckIn))) {
-          return "presensi masuk berhasil dan kamu tepat waktu, MANTAB!";
-        } else if ((time.isAfter(endCheckIn))
-            && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn))) {
-          return "presensi masuk berhasil tapi sayang kamu terlambat";
+        if (isButtonEnabled) {
+          // check attendance and return str
+          if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
+              && (time.isBefore(endCheckIn) || time.equals(endCheckIn))) {
+            return "presensi masuk berhasil dan kamu tepat waktu, MANTAB!";
+          } else if ((time.isAfter(endCheckIn))
+              && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn))) {
+            return "presensi masuk berhasil tapi sayang kamu terlambat";
+          }
         }
-
       } else {
-
-        // disable button
-        isButtonEnabled = false;
-
         // return str
         return "maaf presensi masuk gagal karena diluar waktu yang ditentukan";
       }
@@ -52,14 +48,11 @@ public class Attendance {
 
         // disable button
         isButtonEnabled = true;
-
+        if (isButtonEnabled) {
+          return "presensi keluar berhasil, pulang pulang!";
+        }
         // return str
-        return "presensi keluar berhasil, pulang pulang!";
-
       } else {
-
-        // disable button
-        isButtonEnabled = false;
         // return str
         return "maaf presensi keluar gagal karena diluar waktu yang ditentukan";
       }
@@ -69,7 +62,7 @@ public class Attendance {
     return null;
   }
 
-  public static Boolean checkAttendanceIsButtonEnabled(LocalTime time, boolean isCheckIn) {
+  public static Boolean checkAttendanceIsButtonEnabled(LocalTime time) {
 
     // define range of attendance in and out
     final LocalTime startCheckIn = LocalTime.of(6, 0, 0); // 06:00:00
@@ -96,58 +89,5 @@ public class Attendance {
 
     return isButtonEnabled;
 
-    // // if checkin
-    // if (isCheckIn) {
-
-    // // check whether checkin time in range or not
-    // if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
-    // && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn)))
-    // {
-
-    // // enable button
-    // isButtonEnabled = true;
-
-    // // check attendance and return str
-    // if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
-    // && (time.isBefore(endCheckIn) || time.equals(endCheckIn))) {
-    // return isButtonEnabled;
-    // } else if ((time.isAfter(endCheckIn))
-    // && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn)))
-    // {
-    // return isButtonEnabled;
-    // }
-
-    // } else {
-
-    // // disable button
-    // isButtonEnabled = false;
-
-    // // return str
-    // return isButtonEnabled;
-    // }
-
-    // // if checkout
-    // } else {
-
-    // // check whether checkout time in range or not
-    // if ((time.isAfter(startCheckOut) || time.equals(startCheckOut))
-    // && (time.isBefore(endCheckOut) || time.equals(endCheckOut))) {
-
-    // // disable button
-    // isButtonEnabled = true;
-
-    // // return str
-    // return isButtonEnabled;
-
-    // } else {
-
-    // // return str
-    // return isButtonEnabled;
-    // }
-    // }
-
-    // // if there is no condition match, return null
-    // return null;
   }
-
 }
