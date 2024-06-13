@@ -1,9 +1,9 @@
 import java.util.Date;
 
 public class CheckAttendance {
-    public static Boolean presensiMasuk(Date jadwalMasuk, Date waktuPresensi) {
+    public static Boolean presensiMasuk(Date jadwalMasuk, Date waktuPresensiMasuk) {
         Boolean presensiHadir;
-        if (waktuPresensi.after(jadwalMasuk)) {
+        if (waktuPresensiMasuk.after(jadwalMasuk)) {
             presensiHadir = false;
         } else {
             presensiHadir = true;
@@ -11,12 +11,12 @@ public class CheckAttendance {
         return presensiHadir;
     }
 
-    public static Boolean presensiKeluar(Date jadwalKeluar, Date waktuPresensi) {
+    public static Boolean presensiKeluar(Date jadwalKeluar, Date waktuPresensiKeluar) {
         Boolean presensiHadir;
-        if (waktuPresensi.after(jadwalKeluar)) {
-            presensiHadir = false;
-        } else {
+        if (waktuPresensiKeluar.after(jadwalKeluar)) {
             presensiHadir = true;
+        } else {
+            presensiHadir = false;
         }
         return presensiHadir;
 
