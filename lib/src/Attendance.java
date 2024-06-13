@@ -82,56 +82,72 @@ public class Attendance {
     // define initial state for button
     boolean isButtonEnabled = false;
 
-    // if checkin
-    if (isCheckIn) {
-
-      // check whether checkin time in range or not
-      if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
-          && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn))) {
-
-        // enable button
-        isButtonEnabled = true;
-
-        // check attendance and return str
-        if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
-            && (time.isBefore(endCheckIn) || time.equals(endCheckIn))) {
-          return isButtonEnabled;
-        } else if ((time.isAfter(endCheckIn))
-            && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn))) {
-          return isButtonEnabled;
-        }
-
-      } else {
-
-        // disable button
-        isButtonEnabled = false;
-
-        // return str
-        return isButtonEnabled;
-      }
-
-      // if checkout
-    } else {
-
-      // check whether checkout time in range or not
-      if ((time.isAfter(startCheckOut) || time.equals(startCheckOut))
-          && (time.isBefore(endCheckOut) || time.equals(endCheckOut))) {
-
-        // disable button
-        isButtonEnabled = true;
-
-        // return str
-        return isButtonEnabled;
-
-      } else {
-
-        // return str
-        return isButtonEnabled;
-      }
+    if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
+        && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn))) {
+      isButtonEnabled = true;
+      return isButtonEnabled;
     }
 
-    // if there is no condition match, return null
-    return null;
+    if ((time.isAfter(startCheckOut) || time.equals(startCheckOut))
+        && (time.isBefore(endCheckOut) || time.equals(endCheckOut))) {
+      isButtonEnabled = true;
+      return isButtonEnabled;
+    }
+
+    return isButtonEnabled;
+
+    // // if checkin
+    // if (isCheckIn) {
+
+    // // check whether checkin time in range or not
+    // if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
+    // && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn)))
+    // {
+
+    // // enable button
+    // isButtonEnabled = true;
+
+    // // check attendance and return str
+    // if ((time.isAfter(startCheckIn) || time.equals(startCheckIn))
+    // && (time.isBefore(endCheckIn) || time.equals(endCheckIn))) {
+    // return isButtonEnabled;
+    // } else if ((time.isAfter(endCheckIn))
+    // && (time.isBefore(maxToleranceCheckIn) || time.equals(maxToleranceCheckIn)))
+    // {
+    // return isButtonEnabled;
+    // }
+
+    // } else {
+
+    // // disable button
+    // isButtonEnabled = false;
+
+    // // return str
+    // return isButtonEnabled;
+    // }
+
+    // // if checkout
+    // } else {
+
+    // // check whether checkout time in range or not
+    // if ((time.isAfter(startCheckOut) || time.equals(startCheckOut))
+    // && (time.isBefore(endCheckOut) || time.equals(endCheckOut))) {
+
+    // // disable button
+    // isButtonEnabled = true;
+
+    // // return str
+    // return isButtonEnabled;
+
+    // } else {
+
+    // // return str
+    // return isButtonEnabled;
+    // }
+    // }
+
+    // // if there is no condition match, return null
+    // return null;
   }
 
 }
