@@ -58,6 +58,8 @@ public class Attendance {
 
       } else {
 
+        // disable button
+        isButtonEnabled = false;
         // return str
         return "maaf presensi keluar gagal karena diluar waktu yang ditentukan";
       }
