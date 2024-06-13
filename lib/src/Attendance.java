@@ -4,12 +4,13 @@ public class Attendance {
 
   public static String checkAttendanceInAndOut(LocalTime time, boolean isCheckIn, boolean isButtonEnabled) {
 
-    final LocalTime startCheckIn = LocalTime.of(6, 0, 0);
-    final LocalTime endCheckIn = LocalTime.of(8, 30, 0);
+    // define range of attendance in and out
+    final LocalTime startCheckIn = LocalTime.of(6, 0, 0); // 06:00:00
+    final LocalTime endCheckIn = LocalTime.of(8, 30, 0); // 08:30:00
     final LocalTime maxToleranceCheckIn = endCheckIn.plusMinutes(30);
 
-    final LocalTime startCheckOut = LocalTime.of(16, 30, 0);
-    final LocalTime endCheckOut = LocalTime.of(17, 0, 0);
+    final LocalTime startCheckOut = LocalTime.of(16, 30, 0); // 16:30:00
+    final LocalTime endCheckOut = LocalTime.of(17, 0, 0); // 17:00:00
 
     if (isCheckIn) {
       // check whether checkin time in range or not
@@ -29,6 +30,7 @@ public class Attendance {
         // if not in range of checkin time & button disabled
         return "maaf presensi masuk gagal karena diluar waktu yang ditentukan";
       }
+
     } else {
       // check whether checkout time in range or not
       if ((time.isAfter(startCheckOut) || time.equals(startCheckOut))
