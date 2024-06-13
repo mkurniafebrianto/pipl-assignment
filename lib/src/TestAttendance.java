@@ -20,12 +20,12 @@ public class TestAttendance {
         public boolean isCheckIn;
 
         @Parameterized.Parameter(3)
-        public boolean isButtonEnabled;
+        public boolean expectedButtonState;
 
         @Parameterized.Parameter(4)
-        public String expectedResult;
+        public String expectedStatusAttendance;
 
-        @Parameters(name = "{index}: {0} - {1} - {2} - {3}")
+        @Parameters(name = "{index}: test case: {0} - time: {1} - isCheckIn: {2} - expectedButtonState: {3} - expectedStatusAttendance {4}")
         public static Collection<Object[]> data() {
                 return Arrays.asList(new Object[][] {
                                 { "Presensi Masuk Tepat di Batas Awal", LocalTime.of(6, 0, 0), true, true,
@@ -56,11 +56,11 @@ public class TestAttendance {
 
         @Test
         public void testCheckAttendanceInAndOut() {
-                assertEquals(expectedResult, Attendance.checkAttendanceInAndOut(time, isCheckIn));
+                assertEquals(expectedStatusAttendance, Attendance.checkAttendanceInAndOut(time, isCheckIn));
         }
 
         @Test
         public void checkAttendanceIsButtonEnabled() {
-                assertEquals(isButtonEnabled, Attendance.checkAttendanceIsButtonEnabled(time));
+                assertEquals(expectedButtonState, Attendance.checkAttendanceIsButtonEnabled(time));
         }
 }
